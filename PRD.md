@@ -25,9 +25,11 @@ Framework: Next.js (TypeScript, App Router).
 Styling: Tailwind CSS with custom theme defined in globals.css.
 Animations: Framer Motion, centralized in animations.ts.
 Data Layer: React Query with reusable query functions (queries/mtg.ts).
+Caching: Enhanced React Query caching strategy for MTG API rate limiting.
 Forms: React Hook Form with reusable input component.
 Testing: Cypress for e2e and unit testing.
 State: Primarily local state with React Query; minimal global state.
+Initial Data: Start with the most recent MTG set to keep initial load manageable.
 
 4. Design System
    Theme Colors: Use values defined in globals.css:
@@ -47,18 +49,20 @@ Subheading and body text for content and descriptions.
    5.1 Card Grid
 
 Responsive grid layout for displaying cards.
-Each card displays: name, image, set, rarity, and color.
-Cards are clickable → modal or dedicated view with larger image and details.
+Each card displays: card image only in grid view.
+Cards are clickable → modal overlay with larger image and detailed card information.
+Modal should be in its own Modal/ directory for organization.
 
 5.2 Filters & Sorting
 
-Filters: rarity, color, set, type.
+Filters: rarity, color, set, type (displayed in sidebar layout).
 Sorting: alphabetical, rarity, release date.
-Pagination support for large result sets.
+Pagination: numbered pagination system for large result sets.
 
 5.3 Shared Layout
 
-Header (site name/logo + filter/search bar).
+Header (site name/logo).
+Sidebar (filters and search functionality).
 Footer (API attribution, links).
 
 5.4 Animations
@@ -69,10 +73,11 @@ Variants stored in animations.ts for reusability.
 5.5 Reusable Components
 
 Input: built with React Hook Form, styled with Tailwind.
-Card: modular component for displaying card data.
-Modal: reusable for showing card details.
+Card: modular component for displaying card images in grid.
+Modal: reusable component in Modal/ directory for showing detailed card information.
 Grid: container for card collections.
 Header & Footer: shared across pages.
+Sidebar: filters and search functionality.
 
 6. Testing Strategy
 
@@ -93,6 +98,8 @@ Ensure modular, testable components (review for possible refactors).
 Keep API interactions centralized in queries/.
 
 9. Future Considerations
+
+10. API being used for data "https://docs.magicthegathering.io/"
 
 Add deck-building or collection bookmarking.
 Offline caching with service workers.
