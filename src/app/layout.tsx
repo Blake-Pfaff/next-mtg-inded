@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { LayoutWrapper } from "../components/Layout";
 import "./globals.css";
 import { LayoutWrapper } from "../components/Layout";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning={true}
       >
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
