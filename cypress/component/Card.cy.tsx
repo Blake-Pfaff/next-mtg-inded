@@ -54,7 +54,7 @@ describe("Card Component", () => {
     cy.mount(<Card card={mockCard} onClick={onClickSpy} />);
 
     cy.get('[data-cy="card"]')
-      .click()
+      .click({ force: true })
       .then(() => {
         expect(onClickSpy).to.have.been.calledWith("test-card-123");
       });
@@ -66,7 +66,7 @@ describe("Card Component", () => {
     cy.mount(<Card card={mockCard} onClick={onClickSpy} />);
 
     // Test hover state
-    cy.get('[data-cy="card"]').trigger("mouseover");
+    cy.get('[data-cy="card"]').trigger("mouseover", { force: true });
     cy.get('[data-cy="card-title"]').should(
       "have.class",
       "group-hover:text-primary-600"

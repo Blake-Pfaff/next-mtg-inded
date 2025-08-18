@@ -1,0 +1,24 @@
+{
+  "cards": [
+    {
+      "id": "1",
+      "name": "Lightning Bolt",
+      "imageUrl": "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=397722&type=card",
+      "manaCost": "{R}",
+      "type": "Instant",
+      "rarity": "Common",
+      "set": "dmu",
+      "setName": "Dominaria United"
+    },
+    {
+      "id": "2",
+      "name": "Counterspell",
+      "imageUrl": "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=397723&type=card",
+      "manaCost": "{U}{U}",
+      "type": "Instant",
+      "rarity": "Common",
+      "set": "dmu",
+      "setName": "Dominaria United"
+    }
+  ]
+}

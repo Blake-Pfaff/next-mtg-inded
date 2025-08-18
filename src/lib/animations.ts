@@ -70,3 +70,32 @@ export const modalVariants: Variants = {
     },
   },
 };
+
+// Pagination animations
+export const paginationButtonVariants: Variants = {
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.2,
+    },
+  },
+  tap: {
+    scale: 0.95,
+    transition: {
+      duration: 0.1,
+    },
+  },
+};
+
+// Stagger animation for pagination buttons
+export const paginationContainerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};

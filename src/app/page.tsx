@@ -1,9 +1,17 @@
 "use client";
 
+import { PaginationContainer } from "@/components/Pagination";
+import { usePaginationURL } from "@/components/Pagination/features/usePaginationURL";
 import { useCards } from "@/lib/queries/mtg";
 import { CardGrid } from "./features/CardGrid";
 
 export default function Home() {
+  // URL-based pagination state management
+  const { currentPage, pageSize, setPage, setPageSize } = usePaginationURL({
+    defaultPage: 1,
+    defaultPageSize: 20,
+  });
+
   // Fetch cards from MTG API - starting with a popular recent set
   const {
     data: cards = [],
@@ -11,13 +19,28 @@ export default function Home() {
     error,
   } = useCards({
     set: "dmu", // Dominaria United - recent set with good images
-    pageSize: 20,
+    page: currentPage,
+    pageSize: pageSize,
   });
 
   const handleCardClick = (cardId: string) => {
     // TODO: Open modal with card details
     console.log("Card clicked:", cardId);
   };
+
+  const handlePageChange = (page: number) => {
+    setPage(page);
+    // Scroll to top when page changes
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handlePageSizeChange = (newPageSize: number) => {
+    setPageSize(newPageSize);
+  };
+
+  // Calculate total pages (MTG API doesn't provide total count, so we estimate)
+  // For now, we'll show a reasonable number of pages based on the set
+  const estimatedTotalPages = Math.ceil(300 / pageSize); // Estimate ~300 cards in a typical set
 
   return (
     <div className="flex flex-col gap-6">
@@ -55,6 +78,24 @@ export default function Home() {
           isLoading={isLoading}
           onCardClick={handleCardClick}
         />
+
+        {/* Pagination */}
+        {!isLoading && cards.length > 0 && (
+          <div className="mt-8">
+            <PaginationContainer
+              currentPage={currentPage}
+              totalPages={estimatedTotalPages}
+              onPageChange={handlePageChange}
+              totalItems={300} // Estimated total items
+              itemsPerPage={pageSize}
+              showPageSizeSelector={true}
+              onPageSizeChange={handlePageSizeChange}
+              pageSizeOptions={[10, 20, 30, 50]}
+              layout="split"
+              className="border-t border-primary-200 pt-6"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
