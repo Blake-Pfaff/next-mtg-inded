@@ -1,1 +1,2 @@
 - Always reference PRD.md for project requirements and structure decisions
+- NEVER use inline styles use Tailwind
