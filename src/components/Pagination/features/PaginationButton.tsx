@@ -1,17 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
-
-interface PaginationButtonProps {
-  page?: number;
-  isActive?: boolean;
-  children: ReactNode;
-  onClick: () => void;
-  disabled?: boolean;
-  ariaLabel?: string;
-  size?: "sm" | "md" | "lg";
-}
+import { PaginationButtonProps } from "../types";
 
 export const PaginationButton = ({
   page,
@@ -41,6 +31,7 @@ export const PaginationButton = ({
         ${sizeClasses[size]}
         flex items-center justify-center
         rounded-small border transition-all duration-200
+        hover:cursor-pointer
         ${
           isActive
             ? "bg-primary-600 text-white border-primary-600 shadow-sm"

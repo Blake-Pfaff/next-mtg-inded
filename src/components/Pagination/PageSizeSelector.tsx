@@ -1,16 +1,7 @@
 "use client";
 
 import { Dropdown, DropdownOption } from "@/components/Dropdown";
-
-export interface PageSizeSelectorProps {
-  currentPageSize: number;
-  pageSizeOptions?: number[];
-  onPageSizeChange: (pageSize: number) => void;
-  disabled?: boolean;
-  className?: string;
-  label?: string;
-  size?: "sm" | "md" | "lg";
-}
+import { PageSizeSelectorProps } from "./types";
 
 export const PageSizeSelector = ({
   currentPageSize,

@@ -2,23 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
-
-interface UsePaginationURLProps {
-  defaultPage?: number;
-  defaultPageSize?: number;
-  paramNames?: {
-    page?: string;
-    pageSize?: string;
-  };
-}
-
-interface UsePaginationURLReturn {
-  currentPage: number;
-  pageSize: number;
-  setPage: (page: number) => void;
-  setPageSize: (size: number) => void;
-  setPageAndSize: (page: number, size: number) => void;
-}
+import { UsePaginationURLProps, UsePaginationURLReturn } from "../types";
 
 /**
  * Hook for managing pagination state in URL parameters

@@ -1,37 +1,9 @@
 "use client";
 
 import { PageSizeSelector } from "./PageSizeSelector";
-import { PaginationCore, PaginationCoreProps } from "./PaginationCore";
+import { PaginationCore } from "./PaginationCore";
 import { PaginationInfo } from "./PaginationInfo";
-
-export interface PaginationContainerProps {
-  // Pagination props
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-
-  // Optional pagination customization
-  showFirstLast?: boolean;
-  showPrevNext?: boolean;
-  maxVisiblePages?: number;
-  paginationSize?: PaginationCoreProps["size"];
-  paginationDisabled?: boolean;
-
-  // Page info props
-  totalItems?: number;
-  itemsPerPage?: number;
-  showItemCount?: boolean;
-
-  // Page size selector props
-  showPageSizeSelector?: boolean;
-  pageSizeOptions?: number[];
-  onPageSizeChange?: (pageSize: number) => void;
-  pageSizeSelectorDisabled?: boolean;
-
-  // Layout options
-  layout?: "horizontal" | "vertical" | "split";
-  className?: string;
-}
+import { PaginationContainerProps } from "./types";
 
 export const PaginationContainer = ({
   currentPage,
@@ -106,28 +78,31 @@ export const PaginationContainer = ({
         data-cy="pagination-container"
         className={`flex flex-col gap-4 ${className}`}
       >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            {infoElement}
-            {pageSizeElement}
-          </div>
+        <div className="flex items-center justify-start sm:justify-between">
+          {infoElement}
         </div>
-        <div className="flex justify-center">{paginationElement}</div>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div className="sm:flex-1 flex justify-start">{pageSizeElement}</div>
+          <div className="flex justify-center">{paginationElement}</div>
+          <div className="sm:flex-1"></div>
+        </div>
       </div>
     );
   }
-
   // Default horizontal layout
   return (
     <div
       data-cy="pagination-container"
-      className={`flex flex-col sm:flex-row items-center justify-between gap-4 ${className}`}
+      className={`flex flex-col gap-4 ${className}`}
     >
-      <div className="flex items-center gap-4">
-        {infoElement}
+      {/* Info row - always separate */}
+      {infoElement}
+
+      {/* Page size selector and pagination controls on same row for desktop, stacked on mobile */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         {pageSizeElement}
+        {paginationElement}
       </div>
-      {paginationElement}
     </div>
   );
 };

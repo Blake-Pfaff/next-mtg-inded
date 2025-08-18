@@ -11,17 +11,7 @@ import {
   getPaginationState,
   getVisiblePages,
 } from "./features/paginationLogic";
-
-export interface PaginationCoreProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-  showFirstLast?: boolean;
-  showPrevNext?: boolean;
-  maxVisiblePages?: number;
-  disabled?: boolean;
-  size?: "sm" | "md" | "lg";
-}
+import { PaginationCoreProps } from "./types";
 
 export const PaginationCore = ({
   currentPage,
@@ -55,7 +45,7 @@ export const PaginationCore = ({
   const iconSize = size === "sm" ? "xs" : size === "lg" ? "md" : "sm";
 
   return (
-    <nav aria-label="Pagination" className="flex items-center justify-center">
+    <nav aria-label="Pagination" className="flex items-center justify-center ">
       <div className={`flex items-center ${currentSize.gap}`}>
         {/* First Page */}
         {showFirstLast && showFirstButton && (
