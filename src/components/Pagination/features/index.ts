@@ -2,7 +2,7 @@
 export * from "./paginationLogic";
 
 // Custom hooks
-export { usePaginationURL } from "./usePaginationURL";
+export { usePaginationURL } from "../hooks/usePaginationURL";
 
 // Sub-components
 export { PaginationButton } from "./PaginationButton";

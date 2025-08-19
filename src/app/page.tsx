@@ -1,7 +1,7 @@
 "use client";
 
 import { PaginationContainer } from "@/components/Pagination";
-import { usePaginationURL } from "@/components/Pagination/features/usePaginationURL";
+import { usePaginationURL } from "@/components/Pagination/hooks/usePaginationURL";
 import { useCards } from "@/lib/queries/mtg";
 import { CardGrid } from "./features/CardGrid";
 
